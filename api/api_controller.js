@@ -20,19 +20,18 @@ module.exports = {
             sum: sum,
             direction: direction
         }
-        console.log("aldkjfasd", user[token]);
         try {
-            // try {
-            //     await axios.post(
-            //         process.env.PLATFORM_SERVER + "api/games/bet",
-            //         {
-            //             token: user[token].userToken,
-            //             amount: user[token].betAmount,
-            //         }
-            //     );
-            // } catch (err) {
-            //     throw new Error("Bet Error!");
-            // }
+            try {
+                await axios.post(
+                    process.env.PLATFORM_SERVER + "api/games/bet",
+                    {
+                        token: user[token].userToken,
+                        amount: user[token].betAmount,
+                    }
+                );
+            } catch (err) {
+                throw new Error("Bet Error!");
+            }
             var raiseprice;
             var dice = [];
             for (var i = 0; i < 2; i++) {
@@ -94,18 +93,18 @@ module.exports = {
             }
             var total = user[token].amount + raiseprice - user[token].betAmount;
             var msg = "Price  : " + raiseprice.toFixed(3) + "$";
-            // try {
-            //     await axios.post(
-            //         process.env.PLATFORM_SERVER + "api/games/winlose",
-            //         {
-            //             token: user[token].userToken,
-            //             amount: raiseprice,
-            //             winState: raiseprice != 0 ? true : false,
-            //         }
-            //     )
-            // } catch (err) {
-            //     throw new Error("WinLose Error!");
-            // }
+            try {
+                await axios.post(
+                    process.env.PLATFORM_SERVER + "api/games/winlose",
+                    {
+                        token: user[token].userToken,
+                        amount: raiseprice,
+                        winState: raiseprice != 0 ? true : false,
+                    }
+                )
+            } catch (err) {
+                throw new Error("WinLose Error!");
+            }
             try {
                 res.json({
                     diceArray: dice,
