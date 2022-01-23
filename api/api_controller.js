@@ -39,7 +39,7 @@ module.exports = {
             }
             var sum = dice[0] + dice[1];
             if (user[token].direction == "True") {
-                if (user[token].sum <= sum) {
+                if (user[token].sum >= sum) {
                     if (sum == 2) {
                         raiseprice = 0;
                     } else if (sum == 3) {
@@ -67,7 +67,7 @@ module.exports = {
                     raiseprice = 0;
                 }
             } else {
-                if (user[token].sum >= sum) {
+                if (user[token].sum <= sum) {
                     if (sum == 2) {
                         raiseprice = user[token].betAmount * 1.01;
                     } else if (sum == 3) {
