@@ -121,7 +121,7 @@ module.exports = {
             if (raiseprice == 0) {
                 msg = "You lose..";
             } else {
-                msg = "Price  : " + "X" + cases + "$";
+                msg = "Price  : " + "X" + cases;
             }
             try {
                 await axios.post(
